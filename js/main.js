@@ -1,7 +1,7 @@
 var progress = document.querySelector("#test");
 var d = new Date();
 Ramdan = new Array(
-    new Array(4, 46, 7, 9),
+    new Array(4, 46, 7, 12),
     new Array(4, 43, 7, 12),
     new Array(4, 42, 7, 13),
     new Array(4, 40, 7, 13),
@@ -39,11 +39,13 @@ Ramdan = new Array(
 );
 
 function progressBar() {
-    progress.style = "width: " + calcValue() + "%";
-    progress.setAttribute("aria-valuenow", calcValue());
+    var AfteerCallcvalue = calcValue();
+    progress.style = "width: " + AfteerCallcvalue + "%";
+    progress.setAttribute("aria-valuenow", AfteerCallcvalue);
 }
+
 progressBar();
-setInterval(progressBar(), 1000);
+var x = setInterval(progressBar, 1000);
 
 function dayInRAMDAN(dat, Month) {
     if (Month == 3) {
@@ -54,7 +56,7 @@ function dayInRAMDAN(dat, Month) {
 }
 
 function calcValue() {
-
+    d = new Date();
     var dat = d.getDate();
     var Month = d.getMonth();
 
@@ -84,9 +86,9 @@ function calcValue() {
         } else {
             str2 = " دقيقة ";
         }
-        progress.innerHTML = " متبقي للإفطار " + rm + str2 +  rH +str   ;
+        progress.innerHTML = " متبقي للإفطار " + rm + str2 + rH + str;
         return value;
-    }else{
+    } else {
         progress.innerHTML = " تقبل الله صيامكم ";
         return 100;
     }
@@ -97,10 +99,8 @@ function calcRimaindTime(Mm) {
     //new Date(year, month, day, hours, minutes)
     var EndTime = new Date(2021, d.getMonth(), d.getDate(), 19, Mm);
     var EndTimeMinut = EndTime.getTime() / 60000;
-    console.log(EndTimeMinut - currentTime);
-    console.log(EndTimeMinut);
-    console.log(currentTime);
     return EndTimeMinut - currentTime;
 }
+
 
 
