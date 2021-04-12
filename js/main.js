@@ -43,7 +43,7 @@ function progressBar() {
     progress.setAttribute("aria-valuenow", calcValue());
 }
 progressBar();
-setInterval(progressBar(), 60000);
+setInterval(progressBar(), 1000);
 
 function dayInRAMDAN(dat, Month) {
     if (Month == 3) {
@@ -87,7 +87,8 @@ function calcValue() {
         progress.innerHTML = " متبقي للإفطار " + rm + str2 +  rH +str   ;
         return value;
     }else{
-        progress.innerHTML = " تقبل الله صيامكم "
+        progress.innerHTML = " تقبل الله صيامكم ";
+        return 100;
     }
 }
 
