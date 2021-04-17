@@ -47,6 +47,10 @@ iframe{
     padding-bottom: 5px;
     overflow: visible;
 }
+
+#adan{
+    display: none;
+}
 /* Mobile and tableat */
 @media (max-width: 767px){
 

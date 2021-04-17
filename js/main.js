@@ -1,41 +1,41 @@
 var progress = document.querySelector("#test");
 var d = new Date();
 Ramdan = new Array(
-    new Array(4, 46, 7, 12),
-    new Array(4, 43, 7, 12),
-    new Array(4, 42, 7, 13),
-    new Array(4, 40, 7, 13),
+    new Array(46, 12),
+    new Array(43, 12),
+    new Array(42, 13),
+    new Array(40, 13),
 
-    new Array(4, 39, 7, 14),
-    new Array(4, 38, 7, 15),
-    new Array(4, 36, 7, 15),
-    new Array(4, 35, 7, 16),
-    new Array(4, 34, 7, 17),
-    new Array(4, 33, 7, 18),
-    new Array(4, 31, 7, 18),
+    new Array(39, 14),
+    new Array(38, 15),
+    new Array(36, 15),
+    new Array(35, 16),
+    new Array(34, 17),
+    new Array(33, 18),
+    new Array(31, 18),
 
-    new Array(4, 30, 7, 19),
-    new Array(4, 29, 7, 20),
-    new Array(4, 28, 7, 21),
-    new Array(4, 26, 7, 21),
-    new Array(4, 25, 7, 22),
-    new Array(4, 24, 7, 23),
-    new Array(4, 23, 7, 24),
+    new Array(30, 19),
+    new Array(29, 20),
+    new Array(28, 21),
+    new Array(26, 21),
+    new Array(25, 22),
+    new Array(24, 23),
+    new Array(23, 24),
 
-    new Array(4, 21, 7, 24),
-    new Array(4, 20, 7, 25),
-    new Array(4, 19, 7, 26),
-    new Array(4, 18, 7, 26),
-    new Array(4, 17, 7, 27),
-    new Array(4, 15, 7, 28),
-    new Array(4, 14, 7, 28),
+    new Array(21, 24),
+    new Array(20, 25),
+    new Array(19, 26),
+    new Array(18, 26),
+    new Array(17, 27),
+    new Array(15, 28),
+    new Array(14, 28),
 
-    new Array(4, 13, 7, 29),
-    new Array(4, 12, 7, 30),
-    new Array(4, 11, 7, 30),
-    new Array(4, 10, 7, 31),
-    new Array(4, 9, 7, 32),
-    new Array(4, 8, 7, 32)
+    new Array(4, 13, 29),
+    new Array(4, 12, 30),
+    new Array(4, 11, 30),
+    new Array(4, 10, 31),
+    new Array(4, 9, 32),
+    new Array(4, 8, 32)
 );
 
 function progressBar() {
@@ -46,13 +46,14 @@ function progressBar() {
 
 progressBar();
 var x = setInterval(progressBar, 1000);
-
+var firstTime = true;
 function dayInRAMDAN(dat, Month) {
     if (Month == 3) {
         return (dat - 12);
     } else if (Month == 4) {
         return (dat + 18);
     }
+
 }
 
 function calcValue() {
@@ -61,8 +62,8 @@ function calcValue() {
     var Month = d.getMonth();
 
 
-    var Mm = (Ramdan[dayInRAMDAN(dat, Month)])[3];
-    var fm = (Ramdan[dayInRAMDAN(dat, Month)])[1];
+    var Mm = (Ramdan[dayInRAMDAN(dat, Month)])[1];
+    var fm = (Ramdan[dayInRAMDAN(dat, Month)])[0];
 
     var Currenthour = d.getHours();
     var CurrentMinutes = d.getMinutes();
@@ -89,6 +90,7 @@ function calcValue() {
         progress.innerHTML = " متبقي للإفطار " + rm + str2 + rH + str;
         return value;
     } else {
+        adanAudioRun(Mm , d);
         progress.innerHTML = " تقبل الله صيامكم ";
         return 100;
     }
@@ -101,6 +103,16 @@ function calcRimaindTime(Mm) {
     var EndTimeMinut = EndTime.getTime() / 60000;
     return EndTimeMinut - currentTime;
 }
+
+function adanAudioRun(Mm , d) {
+
+    if (d.getHours() == 19) {
+        if (d.getMinutes() >= Mm && d.getMinutes() < (Mm + 2)) {
+            document.querySelector("#adan").play();
+        }
+    }
+}
+
 
 
 
